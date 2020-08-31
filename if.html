@@ -1,0 +1,47 @@
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+
+<script>
+/*
+
+    조건문 종류
+    01. if
+    02. switch
+
+    조건문이란?
+    특정 조건에 맞는 경우에만 특정 구문을 실행하고자 할 때 사용하는 자바스크립트 제어문입니다.
+
+
+    논리연산자
+
+    and     &&
+    or      ||
+
+
+    var userID=window.prompt("사용자 ID를 입력하세요");
+
+    if (userID=="d05004"){
+        alert("환영합니다!");
+    }
+
+    조건부 연산자
+
+    (조건식) ? 실행구문1 : 실행구문2
+*/
+    
+    var ID=window.prompt("ID를 입력하세요");
+    var PW=window.prompt("PW를 입력하세요");
+
+    if (ID=="KDJ" && PW=="P@ssw0rd"){
+        alert("Login Success!");
+    }
+    else if (ID !="KDJ"){
+        alert("wrong ID");
+    }
+    else{
+        alert("wrong PW");
+    }
+
+
+    
+
+</script>

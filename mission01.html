@@ -1,0 +1,123 @@
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+
+    /*
+    미션 01:
+    1. 일정 시간 동안 누가 ㅏㅁㄶ이 물고기를 클릭하는지 알아보는 간단한 게임입니다.
+    2. 물고기 클릭시 점수를 1점 증가시킨 후화면에 출력해 주세요.
+    3. 물고 ㅣ위치를 0.5초마다 한번씩 랜덤하게 움직이도록 해주세요.
+    4. 10초 후 게임이 종료되게 만들어 주세요.
+    5. 함수를 활용해  코드를 구조화 시켜 주세요.
+
+    */
+    /*
+$(document).ready(function(){
+    var count=0;
+    var $score=$("#score");
+
+    var playing=true;
+
+    $("#fish").click(function(){
+        if (playing==true){
+            count+=1;
+            $score.html(count);
+        }
+    })
+
+    setTimeout(function(){
+        playing=false;
+        alert("게임이 종료되었습니다");
+    },5000)
+
+})
+*/
+var $score=null;
+var $fish=null;
+var timerID=-1;
+var playing=false;
+var count=0;
+
+$(document).ready(function(){
+    init();
+    initEvent();
+    
+
+
+})
+//전역에서 사용할 요소를 초기화하는 기능을 담당
+function init(){
+    $score=$("#score");
+    $fish=$("#fish");
+
+}
+
+function moveFish(){
+    var x=Math.floor(Math.random()*480);
+    var y=Math.floor(Math.random()*330);
+    console.log($fish);
+
+    $fish.css({
+        "left":x,
+        "top":y
+    });
+}
+
+function startGame(){
+    if (playing==false){
+        playing=true;
+        checkEndGame();
+        timerID=setInterval(function(){
+        moveFish();
+    },500)
+    }
+    return timerID;
+}
+
+function initEvent(){
+    $("#start").click(function(){
+        startGame();
+    })
+    $fish.click(function(){
+    addScore();
+})
+}
+
+function addScore(){
+    if (playing==true){
+        count++;
+        $score.html(count);
+    }
+}
+
+function checkEndGame(){
+    setTimeout(function(){
+        playing=false;
+        clearInterval(timerID);
+        alert("게임이 종료되었습니다");
+    },3000)
+}
+
+</script>
+<style>
+    #fish{
+        position:absolute;
+        width:100px;
+    }
+
+    #panel{
+        width:600px;
+        height:400px;
+        background:#bbbbbb;
+    }
+</style>
+</head>
+<body>
+    <input type="submit" id="start" value="Game Start">
+    <div id="score">
+        0
+    </div>
+    <div id="panel"><img src="fish.jpg" id="fish"></div>
+</body>
+</html>

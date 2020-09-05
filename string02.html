@@ -1,0 +1,48 @@
+<head>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+/*
+03. 특정 위치의 문자 구하기
+--------------------------------------
+charAt()을 이용하면 특정 위치의 문자를 구할 수 있습니디ㅏ.
+1)사용법
+    문법:
+    var ch= 문자열 cahrAt(Index);
+    
+    매개변수:
+        Index: 문자열 위치 인덱스 값.
+
+    리턴 값:
+        Index 위치의 문자
+
+2)예제
+입력받은 문차열을 1초에 한 문자씩 #panel에 출력해주세요.
+모든 문자를 출력하면 "종료됐습니다". 라는 알림메시지를 출력한 후 타이머를 정지 시켜 주세요.
+
+*/
+var data=window.prompt("문자열을 입력하세요");
+var index=0;
+
+$(document).ready(function(){
+
+    var $panel=$("#panel");
+
+    var timerId=setInterval(function(){
+        var ch=data.charAt(index);
+
+        $panel.html(ch);
+        index++;
+        if (index==data.length){
+            alert("종료되었습니다");
+            clearInterval(timerId);
+        }
+    },1000)
+
+
+})
+</script>
+</head>
+<body>
+    <div id="panel">0</div>
+
+</body>

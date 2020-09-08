@@ -1,0 +1,95 @@
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+/*
+미션 : 텍스트 스크롤러 만들기
+
+요구사항
+    1) 텍스트를 우에서 좌로 계속해서 스크롤되게 해주세요.
+    2) 함수 하나로 여러개의 스크롤이 가능하게 만들어주세요
+
+힌트:
+    - 우에서 좌로 스크롤하는 방법
+    $대상.css("left",위치값)
+
+    - 현재 너비값 구하기.
+    $대상.outerWidth()
+
+
+*/
+
+$(document).ready(function(){
+    textScroller();
+})
+
+function textScroller(){
+    //모든 텍스트 스크롤러 기능은 여기 내부에서 중첩함수로 만들 것입니다.
+
+    var $container=null;
+    var $content=null;
+    
+    var startPosX=0;
+    var endPosX=0;
+    var currentPosX=0;
+
+    //내부에서 사용할 요소들을 미리 찾아놓기
+    function init(){
+        $container=$("#scroller1");
+        $content=$container.find(".content");
+
+        startPosX=$container.outerWidth();
+        endPosX=-$content.outerWidth();
+
+        currentPosX=startPosX;
+
+    }
+
+    function setPosition(pos){
+        $content.css("left",pos);
+    }
+
+    function autoPlay(){
+        setInterval(function(){
+            currentPosX-=4;
+            if(currentPosX<endPosX)
+                currentPosX=startPosX;
+            setPosition(currentPosX);
+        },40)
+    }
+
+    init();
+    setPosition(currentPosX);
+    autoPlay();
+}
+</script>
+
+<style>
+.text-container{
+    width:400px;
+    height:50px;
+    overflow:hidden;
+    background:#dddddd;
+}
+.content{
+    position:absolute;
+}
+
+#scroller1{
+    top:100px;
+    left:100px;
+}
+
+#scroller1 .content{
+    width:500px;
+}
+
+
+</style>
+</head>
+<body>
+    <div id="scroller1" class="text-container">
+        <p class="content">안녕하세요. 자바스크립트와 jQuery 스터디에 오신걸 환영합니다. ---KDJ</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+    /*
+    둥록한 이벤ㅌ ㅡ제거
+    사용법:
+    $대상.off("click",삭제하고 싶은 이벤트 리스터 명);
+    $대상.off("click");
+    $대상.off();
+
+    on() 메서드 또는 단축 형 이벤트 메서드를 이용해 등록한 이벤트를 제거하려면
+    모두 off() 메서드를 사용하면 됩니다.
+    
+    */
+    $(document).ready(function(){
+        $("#btn").click(function(){
+            alert("안녕하세요");
+        })
+
+        $("#btnOff").click(function(){
+            $("#btn").off("click");
+        })
+    })
+
+</script>
+
+<body>
+    <button id="btn">확인</button>
+    <button id="btnOff">이벤트 제거</button>
+</body>
